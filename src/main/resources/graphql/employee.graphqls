@@ -1,1 +1,37 @@
+# Query for fetching employees
+type Query {
+  employees: [Employee]
+  employeeById(employeeId: ID!): Employee
+  employeeByName(name: String!): Employee
+}
 
+# Employee Type Definition
+type Employee {
+  employeeId: ID!
+  name: String!
+  dateOfBirth: String!
+  city: String!
+  salary: Float!
+  gender: String
+  email: String
+}
+
+# Input Type for creating or updating an employee
+input CreateEmployeeInput {
+  name: String!
+  dateOfBirth: String!
+  city: String!
+  salary: Float!
+  gender: String
+  email: String
+}
+
+# Mutation for managing employees
+type Mutation {
+  newEmployee(createEmployeeInput: CreateEmployeeInput!): Employee!
+  deleteEmployee(employeeId: ID!): Boolean
+  updateEmployee(
+    employeeId: ID!
+    createEmployeeInput: CreateEmployeeInput!
+  ): Employee!
+}
